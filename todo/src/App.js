@@ -1,7 +1,7 @@
 import {useState} from "react";
-import ToDoForm from "./ToDoForm"
-import ToDo from "./ToDo"
-
+import ToDoForm from "./todo-form/ToDoForm"
+import ToDo from "./tasks/ToDo"
+import style from "./App.module.css"
 
 function App() {
 
@@ -27,9 +27,11 @@ todo.id === id ? {...todo, complete: !todo.complete} : {...todo}
   }
 
   return (
-	<div className="App">
+	<div className={style.App}>
+
+	  <br/>
 	  <h1>Your todos list</h1>
-	  <div>
+	  <div className={style.container} >
 		<ToDoForm addTask={addTask}/>
 		{todos.map((todo) => {
 		  return (

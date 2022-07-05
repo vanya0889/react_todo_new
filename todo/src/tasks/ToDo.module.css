@@ -1,18 +1,33 @@
 
-.item{
+.item {
     display: flex;
-    justify-content: space-between;
-    width: 300px;
+    justify-content: flex-start;
+    width: 400px;
     margin-top: 5px;
+    max-height: 110px;
+    word-break: break-word;
+    margin-left: 5px;
 
 }
 
-.strike{
-
+.strike {
+    display: flex;
+    justify-content: flex-start;
+    width: 400px;
+    margin-top: 5px;
+    text-decoration: line-through;
+    opacity: 0.5;
+    margin-left: 5px;
 }
 
-.delete{
-cursor: pointer;
+.check {
+    border-radius: 3px;
+}
+
+.delete {
+    cursor: pointer;
+    margin-right: 15px;
+    margin-top: 5px;
 }
 
 hr {

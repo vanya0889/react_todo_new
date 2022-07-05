@@ -1,7 +1,22 @@
 .App {
     margin: 0 auto;
-    width:300px;
+    width:400px;
 }
 .container{
     box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+.filter{
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn{
+    margin-left: 40px;
+}
+
+
+.sec{
+    opacity: 0.5;
+    font-size: 12px;
+    padding: 5px;
 }

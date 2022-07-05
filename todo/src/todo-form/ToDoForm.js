@@ -5,16 +5,13 @@ import Button from "react-bootstrap/Button";
 
 function ToDoForm({addTask}) {
   const [userInput, setUserInput] = useState("");
-  const [filtered, setFiltered] = useState("")
 
 
 
   const handleChange = (e) => {
 	setUserInput(e.currentTarget.value)
   }
-  const todofilter = (e) => {
 
-  }
 
   const handleSubmit = (e) => {
 	e.preventDefault()

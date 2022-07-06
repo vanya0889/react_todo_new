@@ -81,19 +81,20 @@ function App() {
 		  {
 			todos.length > 0 &&
 
-			<ButtonGroup  aria-label="Basic example">
+			<ButtonGroup className={style.group}  aria-label="Basic example">
 			  <span onClick={() => checkAll()} className={style.sec}>{todos.filter(element => element.complete === false).length}tasks left</span>
-			  <Button className={style.btn} variant="secondary" onClick={() => setViewOptions("all")}>All</Button>
-			  <Button variant="secondary" onClick={() => setViewOptions("unchecked")}>ToDo</Button>
-			  <Button variant="secondary" onClick={() => setViewOptions("checked")}>Completed</Button>
+			  <Button  className={style.mg} variant="secondary" onClick={() => setViewOptions("all")}>All</Button>
+			  <Button className={style.btn} variant="secondary" onClick={() => setViewOptions("unchecked")}>ToDo</Button>
+			  <Button className={style.btn} variant="secondary" onClick={() => setViewOptions("checked")}>Completed</Button>
 			</ButtonGroup>
 
 		  }
 		  {
-			todos.some(element => element.complete === true) && <ButtonGroup aria-label="Basic example">
-			  <Button variant="secondary" onClick={() => deleteChecked()}>Clear completed</Button>
-			</ButtonGroup>
+			todos.some(element => element.complete === true) && <div className={style.clearButton} onClick={() => deleteChecked()}>
+			  Clear completed
+			</div>
 		  }
+
 
 		</div>
 

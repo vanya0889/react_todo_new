@@ -9,14 +9,28 @@
     display: flex;
     justify-content: space-between;
 }
-
+.group{
+    align-items: center;
+}
 .btn{
-    margin-left: 40px;
+    background-color: rgba(28,28,28,0);
+    border: none;
 }
 
+.mg {
+    margin-left: 40px;
+    background-color: rgba(28,28,28,0);
+    border: none;
+}
 
 .sec{
     opacity: 0.5;
     font-size: 12px;
     padding: 5px;
+}
+
+.clearButton{
+    font-size: 12px;
+    opacity: 0.5;
+    cursor: pointer;
 }

@@ -4,57 +4,56 @@ import ToDo from "./tasks/ToDo"
 import style from "./App.module.css"
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Button from "react-bootstrap/Button";
+import {useDispatch, useSelector} from "react-redux";
+import {addTodoAction, checkTodoAction, deleteCheckedAction, deleteTodoAction, checkAllActon} from "./redux/actions";
 
 function App() {
   const [viewOptions, setViewOptions] = useState("all")
 
 
-  const [todos, setTodos] = useState([]);
+  const dispatch = useDispatch()
+  const {todo} = useSelector((state) => state)
 
   const filteredTasks = useMemo(() => {
 	switch (viewOptions) {
 	  case "all":
-		return todos;
+		return todo;
 	  case "checked":
-		return todos.filter((todo) => todo.complete === true);
+		return todo.filter((todo) => todo.complete === true);
 	  case "unchecked":
-		return todos.filter((todo) => todo.complete === false);
+		return todo.filter((todo) => todo.complete === false);
 	  default:
 		return
 	}
-  }, [viewOptions, todos])
+  }, [viewOptions, todo])
 
-  const addTask = (userInput) => {
+  const addTodo = (userInput) => {
 	if (userInput) {
 	  const newItem = {
-		id: Math.random().toString().substr(2, 9),
+		id: Date.now(),
 		task: userInput,
 		complete: false
 	  }
-	  setTodos([...todos, newItem])
+	  dispatch(addTodoAction(newItem))
 	}
   }
   const checkAll = () => {
-    setTodos(todos.map((element) => {
-	  return {
-	    ...element,
-		complete: true
-	  }
-	}))
-  }
 
+	dispatch(checkAllActon())
+
+  }
 
 
   const deleteChecked = () => {
-	setTodos(todos.filter(element => element.complete === false))
+	dispatch(deleteCheckedAction())
+
   }
   const removeTask = (id) => {
-	setTodos([...todos.filter((todo) => todo.id !== id)])
+	dispatch(deleteTodoAction(id))
+
   }
-  const handleTouggle = (id) => {
-	setTodos([...todos.map((todo) =>
-	  todo.id === id ? {...todo, complete: !todo.complete} : {...todo}
-	)])
+  const checkTodo = (id) => {
+	dispatch(checkTodoAction(id))
   }
 
   return (
@@ -63,7 +62,7 @@ function App() {
 	  <br/>
 	  <h1>Your todos list</h1>
 	  <div className={style.container}>
-		<ToDoForm addTask={addTask}/>
+		<ToDoForm addTask={addTodo}/>
 		{filteredTasks.map((todo) => {
 		  return (
 			<ToDo
@@ -71,7 +70,7 @@ function App() {
 			  key={todo.id}
 			  isCheck={todo.complete}
 			  text={todo.task}
-			  toggleTask={handleTouggle}
+			  checkTodo={checkTodo}
 			  removeTask={removeTask}
 			/>
 		  )
@@ -79,18 +78,22 @@ function App() {
 
 		<div className={style.filter}>
 		  {
-			todos.length > 0 &&
+			todo.length > 0 &&
 
-			<ButtonGroup className={style.group}  aria-label="Basic example">
-			  <span onClick={() => checkAll()} className={style.sec}>{todos.filter(element => element.complete === false).length}tasks left</span>
-			  <Button  className={style.mg} variant="secondary" onClick={() => setViewOptions("all")}>All</Button>
-			  <Button className={style.btn} variant="secondary" onClick={() => setViewOptions("unchecked")}>ToDo</Button>
-			  <Button className={style.btn} variant="secondary" onClick={() => setViewOptions("checked")}>Completed</Button>
+			<ButtonGroup className={style.group} aria-label="Basic example">
+			  <span onClick={() => checkAll()}
+					className={style.sec}>{todo.filter(element => element.complete === false).length}tasks left</span>
+			  <Button className={style.mg} variant="secondary" onClick={() => setViewOptions("all")}>All</Button>
+			  <Button className={style.btn} variant="secondary"
+					  onClick={() => setViewOptions("unchecked")}>ToDo</Button>
+			  <Button className={style.btn} variant="secondary"
+					  onClick={() => setViewOptions("checked")}>Completed</Button>
 			</ButtonGroup>
 
 		  }
 		  {
-			todos.some(element => element.complete === true) && <div className={style.clearButton} onClick={() => deleteChecked()}>
+			todo.some(element => element.complete === true) &&
+			<div className={style.clearButton} onClick={() => deleteChecked()}>
 			  Clear completed
 			</div>
 		  }

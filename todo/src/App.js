@@ -1,6 +1,6 @@
 import {useMemo, useState} from "react";
 import ToDoForm from "./todo-form/ToDoForm"
-import ToDo from "./tasks/ToDo"
+import ToDo from "./todo/ToDo"
 import style from "./App.module.css"
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Button from "react-bootstrap/Button";

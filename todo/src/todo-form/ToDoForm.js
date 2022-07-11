@@ -1,11 +1,9 @@
 import {useState} from "react";
 import style from "./ToDoForm.module.css"
-import ButtonGroup from "react-bootstrap/ButtonGroup";
-import Button from "react-bootstrap/Button";
+
 
 function ToDoForm({addTask}) {
   const [userInput, setUserInput] = useState("");
-
 
 
   const handleChange = (e) => {
@@ -29,18 +27,19 @@ function ToDoForm({addTask}) {
   return (
 
 
-	<div>
+	<div className={style.containerForms}>
+	  <div className={style.form_wrapper}>
+		<form className={style.form_wrapper} onSubmit={handleSubmit}>
+		  <input className={style.form}
+				 value={userInput}
+				 type="text"
+				 onChange={handleChange}
+				 onKeyDown={handleKeyPress}
+				 placeholder={`Enter your task name here`}
+		  />
 
-	  <form onSubmit={handleSubmit}>
-		<input className={style.form}
-			   value={userInput}
-			   type="text"
-			   onChange={handleChange}
-			   onKeyDown={handleKeyPress}
-			   placeholder={`Enter your task name here`}
-		/>
-
-	  </form>
+		</form>
+	  </div>
 
 
 	</div>

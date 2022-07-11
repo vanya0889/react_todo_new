@@ -3,12 +3,12 @@ import {FaTrashAlt} from "react-icons/fa";
 import {FcCheckmark} from "react-icons/fc";
 
 
-function ToDo({todo, checkTodo, removeTask, text, isCheck}) {
+function ToDo({todo, checkTodo, removeTask, isCheck}) {
 
 
   return (
 	<div>
-	  <div key={todo.id} className={style.item}>
+	  <div key={todo.id} className={style.itemTodo}>
 
 		<div className={style.check_wrapper} onClick={() => checkTodo(todo.id)}>
 		  {
@@ -18,15 +18,13 @@ function ToDo({todo, checkTodo, removeTask, text, isCheck}) {
 		</div>
 
 		<div
-		  className={todo.complete ? style.strike : style.item}
+		  className={todo.complete ? style.checkTodo : style.itemTodo}
 		>
 
-
-		  {/*<input className={style.check} checked={isCheck} onClick={() => checkTodo(todo.id)} type="checkbox"/>*/}
 		  {todo.task}
 		</div>
 
-		<FaTrashAlt className={style.delete} onClick={() => removeTask(todo.id)}/>
+		<FaTrashAlt className={style.deleteBtn} onClick={() => removeTask(todo.id)}/>
 
 	  </div>
 	  <hr/>

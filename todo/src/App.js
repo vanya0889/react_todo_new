@@ -62,44 +62,52 @@ function App() {
 	  <br/>
 	  <h1>Your todos list</h1>
 	  <div className={style.container}>
-		<ToDoForm addTask={addTodo}/>
-		{filteredTasks.map((todo) => {
-		  return (
-			<ToDo
-			  todo={todo}
-			  key={todo.id}
-			  isCheck={todo.complete}
-			  text={todo.task}
-			  checkTodo={checkTodo}
-			  removeTask={removeTask}
-			/>
-		  )
-		})}
-
-		<div className={style.filter}>
-		  {
-			todo.length > 0 &&
-
-			<ButtonGroup className={style.group} aria-label="Basic example">
-			  <span onClick={() => checkAll()}
-					className={style.sec}>{todo.filter(element => element.complete === false).length}tasks left</span>
-			  <Button className={style.mg} variant="secondary" onClick={() => setViewOptions("all")}>All</Button>
-			  <Button className={style.btn} variant="secondary"
-					  onClick={() => setViewOptions("unchecked")}>ToDo</Button>
-			  <Button className={style.btn} variant="secondary"
-					  onClick={() => setViewOptions("checked")}>Completed</Button>
-			</ButtonGroup>
-
-		  }
-		  {
-			todo.some(element => element.complete === true) &&
-			<div className={style.clearButton} onClick={() => deleteChecked()}>
-			  Clear completed
-			</div>
-		  }
-
-
+		<ToDoForm  addTask={addTodo}/>
+		<div className={style.containerForms}>
+		  {filteredTasks.map((todo) => {
+			return (
+			  <ToDo
+				todo={todo}
+				key={todo.id}
+				isCheck={todo.complete}
+				text={todo.task}
+				checkTodo={checkTodo}
+				removeTask={removeTask}
+			  />
+			)
+		  })}
 		</div>
+
+
+
+		{
+		  todo.length > 0 &&
+		  <div className={style.filter}>
+			{
+			  todo.length > 0 &&
+
+			  <ButtonGroup className={style.btnGroup} aria-label="Basic example">
+			  <span onClick={() => checkAll()}
+					className={style.counterTodo}>{todo.filter(element => element.complete === false).length}tasks left</span>
+				<Button className={viewOptions === "all" ? style.borderBtn : style.btn} variant="secondary"
+						onClick={() => setViewOptions("all")}>All</Button>
+				<Button className={viewOptions === "unchecked" ? style.borderBtn : style.btn} variant="secondary"
+						onClick={() => setViewOptions("unchecked")}>ToDo</Button>
+				<Button className={viewOptions === "checked" ? style.borderBtn : style.btn} variant="secondary"
+						onClick={() => setViewOptions("checked")}>Completed</Button>
+			  </ButtonGroup>
+
+			}
+			{
+			  todo.some(element => element.complete === true) &&
+			  <div className={style.clearButton} onClick={() => deleteChecked()}>
+				Clear completed
+			  </div>
+			}
+
+
+		  </div>
+		}
 
 
 	  </div>

@@ -27,7 +27,7 @@ function ToDoForm({addTask}) {
   return (
 
 
-	<div className={style.containerForms}>
+	<div>
 	  <div className={style.form_wrapper}>
 		<form className={style.form_wrapper} onSubmit={handleSubmit}>
 		  <input className={style.form}

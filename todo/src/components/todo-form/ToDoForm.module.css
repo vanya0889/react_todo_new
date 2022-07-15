@@ -2,7 +2,6 @@
 
 
 
-
 .form_wrapper{
     display: flex;
     flex-direction: column-reverse;
@@ -18,4 +17,5 @@
     background-color: transparent;
     outline: none;
     font-size: 15px;
+    margin-bottom: 1px;
 }

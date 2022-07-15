@@ -1,118 +1,22 @@
-import {useMemo, useState} from "react";
-import ToDoForm from "./todo-form/ToDoForm"
-import ToDo from "./todo/ToDo"
-import style from "./App.module.css"
-import ButtonGroup from "react-bootstrap/ButtonGroup";
-import Button from "react-bootstrap/Button";
-import {useDispatch, useSelector} from "react-redux";
-import {addTodoAction, checkTodoAction, deleteCheckedAction, deleteTodoAction, checkAllActon} from "./redux/actions";
+import TodoContainer from "./containers/todo-container/todoContainer";
+import { Navigate, Route, Routes } from "react-router-dom";
+import Login from "./components/authorization/login/login";
+import Registration from "./components/authorization/registration/registration";
+
+
 
 function App() {
-  const [viewOptions, setViewOptions] = useState("all")
 
-
-  const dispatch = useDispatch()
-  const {todo} = useSelector((state) => state)
-
-  const filteredTasks = useMemo(() => {
-	switch (viewOptions) {
-	  case "all":
-		return todo;
-	  case "checked":
-		return todo.filter((todo) => todo.complete === true);
-	  case "unchecked":
-		return todo.filter((todo) => todo.complete === false);
-	  default:
-		return
-	}
-  }, [viewOptions, todo])
-
-  const addTodo = (userInput) => {
-	if (userInput) {
-	  const newItem = {
-		id: Date.now(),
-		task: userInput,
-		complete: false
-	  }
-	  dispatch(addTodoAction(newItem))
-	}
-  }
-  const checkAll = () => {
-
-	dispatch(checkAllActon())
-
-  }
-
-
-  const deleteChecked = () => {
-	dispatch(deleteCheckedAction())
-
-  }
-  const removeTask = (id) => {
-	dispatch(deleteTodoAction(id))
-
-  }
-  const checkTodo = (id) => {
-	dispatch(checkTodoAction(id))
-  }
 
   return (
-	<div className={style.App}>
+	<Routes>
+	  <Route path={"/"} element={<Navigate to={"/todos"} replace />} />
+	  <Route path="/todos" element={<TodoContainer/>}/>
+	  <Route path="/login" element={<Login/>}/>
+	  <Route path="/registration" element={<Registration/>}/>
 
-	  <br/>
-	  <h1>Your todos list</h1>
-	  <div className={style.container}>
-		<ToDoForm  addTask={addTodo}/>
-		<div className={style.containerForms}>
-		  {filteredTasks.map((todo) => {
-			return (
-			  <ToDo
-				todo={todo}
-				key={todo.id}
-				isCheck={todo.complete}
-				text={todo.task}
-				checkTodo={checkTodo}
-				removeTask={removeTask}
-			  />
-			)
-		  })}
-		</div>
-
-
-
-		{
-		  todo.length > 0 &&
-		  <div className={style.filter}>
-			{
-			  todo.length > 0 &&
-
-			  <ButtonGroup className={style.btnGroup} aria-label="Basic example">
-			  <span onClick={() => checkAll()}
-					className={style.counterTodo}>{todo.filter(element => element.complete === false).length}tasks left</span>
-				<Button className={viewOptions === "all" ? style.borderBtn : style.btn} variant="secondary"
-						onClick={() => setViewOptions("all")}>All</Button>
-				<Button className={viewOptions === "unchecked" ? style.borderBtn : style.btn} variant="secondary"
-						onClick={() => setViewOptions("unchecked")}>ToDo</Button>
-				<Button className={viewOptions === "checked" ? style.borderBtn : style.btn} variant="secondary"
-						onClick={() => setViewOptions("checked")}>Completed</Button>
-			  </ButtonGroup>
-
-			}
-			{
-			  todo.some(element => element.complete === true) &&
-			  <div className={style.clearButton} onClick={() => deleteChecked()}>
-				Clear completed
-			  </div>
-			}
-
-
-		  </div>
-		}
-
-
-	  </div>
-	</div>
-  );
+	</Routes>
+  )
 }
 
 export default App;

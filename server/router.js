@@ -3,11 +3,11 @@ import postController from "./postController.js";
 const router = new Router();
 
 
-router.post('/posts', postController.create);
-router.get('/posts', postController.getAll);
-router.get('/posts/:id', postController.getOne);
-router.put('/posts', postController.update);
-router.delete('/posts/:id', postController.delete);
+router.post('/posts', postController.createTodo);
+router.get('/posts', postController.getAllTodos);
+router.get('/posts/:id', postController.getOneTodo);
+router.put('/posts', postController.updateTodo);
+router.delete('/posts/:id', postController.deleteTodo);
 
 
 export default router;

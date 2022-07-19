@@ -2,7 +2,7 @@ const {Schema, model} = require('mongoose')
 
 
 const Todo = new Schema({
-  id: String,
+  userid: String,
   task: String,
   complete: Boolean
 

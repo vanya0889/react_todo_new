@@ -1,4 +1,4 @@
-const Todo = require("./todo")
+const Todo = require("../Components/todo")
 
 
 class TodoController {

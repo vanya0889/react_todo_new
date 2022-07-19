@@ -10,7 +10,7 @@ function App() {
 
   return (
 	<Routes>
-	  <Route path={"/"} element={<Navigate to={"/todos"} replace />} />
+	  <Route path={"/"} element={<Navigate to={"/login"} replace />} />
 	  <Route path="/todos" element={<TodoContainer/>}/>
 	  <Route path="/login" element={<Login/>}/>
 	  <Route path="/registration" element={<Registration/>}/>

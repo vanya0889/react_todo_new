@@ -1,8 +1,18 @@
 const bcrypt = require("bcrypt")
 const {validationResult} = require("express-validator")
+const jwt = require("jsonwebtoken")
+const User = require("../Components/user")
+require("dotenv")
 
-const Role = require("./role")
-const User = require("./user")
+
+const generateAccessToken = (id) => {
+  const payload = {
+	id
+  }
+  return jwt.sign(payload, process.env.SECRET_KEY, {expiresIn: "1h"})
+}
+
+
 
 class UserController {
 
@@ -31,7 +41,16 @@ class UserController {
 
   async loginNewUser(req, res, next) {
 	try {
+	  const {username, password} = req.body;
 
+	  const user = await User.findOne({username});
+	  if (!user) return res.status(400).json({message: `Пользователь ${username} не найден`});
+
+	  const validPassword = bcrypt.compareSync(password, user.password);
+	  if (!validPassword) return res.status(400).json({message: `Неверный пароль`});
+
+	  const token = generateAccessToken();
+	  return res.json(token);
 	} catch (e) {
 
 	}
@@ -40,7 +59,8 @@ class UserController {
 
   async getUsers(req, res, next) {
 	try {
-
+		const users = await User.find()
+	  res.json(users);
 	} catch (e) {
 
 	}
@@ -49,4 +69,4 @@ class UserController {
 
 }
 
-module.exports =  new UserController
+module.exports = new UserController

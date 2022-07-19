@@ -6,13 +6,13 @@ import {
   checkTodoAction,
   deleteCheckedAction,
   deleteTodoAction
-} from "../../redux/actions";
+} from "../../redux/todo/actions";
 import style from "../../App.module.css";
 import ToDoForm from "../../components/todo-form/ToDoForm";
 import ToDo from "../../components/todo/ToDo";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Button from "react-bootstrap/Button";
-import {addTodoThunk, getAllTodoThunk} from "../../redux/thunk";
+import {addTodoThunk, getAllTodoThunk} from "../../redux/todo/thunk-todo";
 
 function TodoContainer() {
   const [viewOptions, setViewOptions] = useState("all")

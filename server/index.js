@@ -1,13 +1,16 @@
-import express from "express";
-import mongoose from "mongoose";
-import router from "./router.js";
+const express = require("express");
+const mongoose = require("mongoose")
+const router = require("./router");
+
+
 
 const PORT = 5001;
 const DB_URL = `mongodb+srv://user:user@cluster0.48udvp2.mongodb.net/?retryWrites=true&w=majority`;
 const app = express();
 
 app.use(express.json());
-app.use('/api', router)
+app.use('/', router);
+
 
 
 
@@ -21,4 +24,4 @@ async function startApp() {
   }
 }
 
-await startApp();
+startApp();

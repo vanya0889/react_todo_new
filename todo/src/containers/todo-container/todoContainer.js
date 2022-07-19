@@ -12,6 +12,7 @@ import ToDoForm from "../../components/todo-form/ToDoForm";
 import ToDo from "../../components/todo/ToDo";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Button from "react-bootstrap/Button";
+import {addTodoThunk, getAllTodoThunk} from "../../redux/thunk";
 
 function TodoContainer() {
   const [viewOptions, setViewOptions] = useState("all")
@@ -40,7 +41,8 @@ function TodoContainer() {
 		task: userInput,
 		complete: false
 	  }
-	  dispatch(addTodoAction(newItem))
+	  // dispatch(addTodoThunk(newItem))
+	  dispatch(getAllTodoThunk())
 	}
   }
   const checkAll = () => {

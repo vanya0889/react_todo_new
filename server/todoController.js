@@ -1,7 +1,7 @@
-import Todo from "./todo.js";
+const Todo = require("./todo")
 
 
-class PostController {
+class TodoController {
   async createTodo(req, res) {
 	try {
 	  const {userID, text, isCheck} = req.body;
@@ -61,4 +61,4 @@ class PostController {
 
 }
 
-export default new PostController;
+module.exports = new TodoController;

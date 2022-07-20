@@ -1,10 +1,15 @@
 import {applyMiddleware, createStore} from "redux";
-import {rootReducer} from "./rootReducer";
-import {initialState} from "./todo/initialState";
+import rootReducer from "./rootReducer";
+import todoInitialState from "./todo/TodoinitialState";
 import {composeWithDevTools} from "redux-devtools-extension";
-
 import thunk from 'redux-thunk'
-import {todoReducer} from "./todo/todoReducer";
+import authInitialState from "./auth/authInitialState";
+
+export const globalInitialState = {
+  auth:	authInitialState,
+  todo: todoInitialState,
+}
+
 const middlewareEnchanter = applyMiddleware(thunk);
 
-export const store = createStore(todoReducer, initialState, composeWithDevTools(middlewareEnchanter))
+export const store = createStore(rootReducer, globalInitialState, composeWithDevTools(middlewareEnchanter))

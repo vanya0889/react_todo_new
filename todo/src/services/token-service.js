@@ -1,9 +1,9 @@
 
 
 
-class TokenService {
+export class TokenService {
 
-  static getToken () {
+  static getToken (token) {
 
     return "Bearer" + localStorage.getItem("token")
   }

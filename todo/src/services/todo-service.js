@@ -6,7 +6,7 @@ import {api} from "../api/api";
 	return data;
   }
    static async getAllTodoService() {
-	 const { data } = await api.get("/posts/"
+	 const { data } = await api.get("/get_all/"
 
 	 );
 	 return data;

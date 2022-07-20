@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose")
-const authRouter = require("./authRouter");
+const authRouter = require("./todoRouter");
 require("dotenv").config();
 
 
@@ -9,7 +9,8 @@ const PORT = process.env.PORT ||5001;
 const app = express();
 
 app.use(express.json());
-app.use('/', authRouter);
+app.use('/api', authRouter);
+
 
 
 

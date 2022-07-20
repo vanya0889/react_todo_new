@@ -14,7 +14,6 @@ function App() {
 	  <Route path="/todos" element={<TodoContainer/>}/>
 	  <Route path="/login" element={<Login/>}/>
 	  <Route path="/registration" element={<Registration/>}/>
-
 	</Routes>
   )
 }

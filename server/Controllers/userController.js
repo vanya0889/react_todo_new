@@ -33,6 +33,8 @@ class UserController {
 		return res.status(400).json({message: "Already registered user"})
 	  }
 	} catch (error) {
+	  console.error(error)
+	  console.trace(error)
 	  // res.status(400).json({error, message: 'Registration error'})
 	  return next(error)
 	}

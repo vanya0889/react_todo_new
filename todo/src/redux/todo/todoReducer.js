@@ -1,7 +1,7 @@
-import {initialState} from "./initialState";
+import todoInitialState from "./TodoinitialState";
 
 
-export function todoReducer(state = initialState, action) {
+export function todoReducer(state = todoInitialState, action) {
   switch (action.type) {
 	case "ADD_TODO":
 	  return {

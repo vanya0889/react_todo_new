@@ -38,7 +38,7 @@ export const loginDis = (username, password) => {
   return async (dispatch) => {
 	try {
 	  const data = await UserService.loginUserService({username, password});
-	  localStorage.setItem("token", data);
+	  TokenService.saveToken("token", data);
 	  dispatch(isLoginAction(username))
 
 	} catch (error) {

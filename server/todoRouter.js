@@ -13,10 +13,10 @@ router.post('/registration', [
 router.post('/login', UserController.loginNewUser);
 router.get('/users', authMiddleware, UserController.getUsers);
 router.post('/posts',authMiddleware, PostController.createTodo);
-router.get('/get_all',authMiddleware, PostController.getAllTodos);
-router.get('/get_one/:id',authMiddleware, PostController.getOneTodo);
-router.put('/update',authMiddleware, PostController.updateTodo);
-router.delete('/delete/:id',authMiddleware, PostController.deleteTodo);
+router.get('/getAll',authMiddleware, PostController.getAllTodos);
+router.patch('/check/',authMiddleware, PostController.checkTodo);
+router.patch('/checkAll',authMiddleware, PostController.checkAllTodo);
+router.delete('/delete/',authMiddleware, PostController.deleteChecked);
 
 
 module.exports = router;

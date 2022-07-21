@@ -3,6 +3,11 @@ export const addTodoAction = (todo) => ({
   payload: todo
 })
 
+export const getAllTodoAction = (todo) => ({
+  type: "GET_ALL_TODO",
+  payload: todo
+})
+
 export const checkTodoAction = (id) => ({
   type: "CHECK_TODO",
   payload: id

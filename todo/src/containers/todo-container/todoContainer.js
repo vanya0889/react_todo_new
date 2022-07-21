@@ -12,14 +12,14 @@ import ToDoForm from "../../components/todo-form/ToDoForm";
 import ToDo from "../../components/todo/ToDo";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Button from "react-bootstrap/Button";
-import {addTodoThunk, getAllTodoThunk} from "../../redux/todo/thunk-todo";
+import {addTodoThunk, checkTodoThunk, getAllTodoThunk} from "../../redux/todo/thunk-todo";
 
 function TodoContainer() {
   const [viewOptions, setViewOptions] = useState("all")
 
 
   const dispatch = useDispatch()
-  const {todo} = useSelector((state) => state)
+  const {todo} = useSelector((state) => state.todo)
 
   const filteredTasks = useMemo(() => {
 	switch (viewOptions) {
@@ -37,12 +37,13 @@ function TodoContainer() {
   const addTodo = (userInput) => {
 	if (userInput) {
 	  const newItem = {
-		id: Date.now(),
+		userId: Date.now(),
 		task: userInput,
 		complete: false
 	  }
-	  // dispatch(addTodoThunk(newItem))
-	  dispatch(getAllTodoThunk())
+	  debugger
+	  dispatch(addTodoThunk(newItem))
+	  //dispatch(getAllTodoThunk())
 	}
   }
   const checkAll = () => {
@@ -61,7 +62,7 @@ function TodoContainer() {
 
   }
   const checkTodo = (id) => {
-	dispatch(checkTodoAction(id))
+	dispatch(checkTodoThunk(id))
   }
 
   return (

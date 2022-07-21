@@ -1,14 +1,33 @@
 import {api} from "../api/api";
+import {TokenService} from "./token-service";
 
- export class TodoService{
+export class TodoService {
   static async addTodoService(values) {
-	const { data } = await api.post("/post/", values);
+    console.log(values)
+	const {data} = await api.post("/posts/", values, {
+	  headers: {
+		'Authorization': TokenService.getToken("token")
+	  }
+
+	});
 	return data;
   }
-   static async getAllTodoService() {
-	 const { data } = await api.get("/get_all/"
 
-	 );
-	 return data;
-   }
+  static async getAllTodoService() {
+	const {data} = await api.get("/getAll/");
+	return data;
+  }
+
+  static async checkTodoService(values) {
+    console.log(values)
+	const {data} = await api.patch("/check", values,{
+	  headers: {
+		'Authorization': TokenService.getToken("token")
+	  }
+	});
+	return data;
+  }
+
+
+
 }

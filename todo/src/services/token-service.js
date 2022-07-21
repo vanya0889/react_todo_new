@@ -5,7 +5,7 @@ export class TokenService {
 
   static getToken (token) {
 
-    return "Bearer" + localStorage.getItem("token")
+    return `Bearer ${localStorage.getItem("token")}`
   }
 
 

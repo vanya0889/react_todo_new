@@ -9,9 +9,8 @@ const generateAccessToken = (id) => {
   const payload = {
 	id
   }
-  return jwt.sign(payload, process.env.SECRET_KEY, {expiresIn: "1h"})
+  return jwt.sign(payload, process.env.SECRET_KEY, {expiresIn: "12h"})
 }
-
 
 
 class UserController {
@@ -54,17 +53,17 @@ class UserController {
 	  const token = generateAccessToken();
 	  return res.json(token);
 	} catch (e) {
-
+	  next(e)
 	}
   }
 
 
   async getUsers(req, res, next) {
 	try {
-		const users = await User.find()
+	  const users = await User.find()
 	  res.json(users);
 	} catch (e) {
-
+	  next(e)
 	}
   }
 

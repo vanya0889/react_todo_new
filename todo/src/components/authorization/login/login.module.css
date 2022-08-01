@@ -1,8 +1,7 @@
 .logPage{
 	display: flex;
 	flex-direction: column;
-	padding: 6px;
-	padding-top: 40px;
+	padding: 40px;
 	box-shadow: 0 0 25px 5px rgba(0, 0, 0, 0.5);
 	width: 500px;
 	border-radius: 2px;

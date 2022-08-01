@@ -1,25 +1,29 @@
-import {useMemo, useState} from "react";
+import {useEffect, useMemo, useState} from "react";
+import obama from "../../assets/obama.gif"
 import {useDispatch, useSelector} from "react-redux";
-import {
-  addTodoAction,
-  checkAllActon,
-  checkTodoAction,
-  deleteCheckedAction,
-  deleteTodoAction
-} from "../../redux/todo/actions";
 import style from "../../App.module.css";
 import ToDoForm from "../../components/todo-form/ToDoForm";
 import ToDo from "../../components/todo/ToDo";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Button from "react-bootstrap/Button";
-import {addTodoThunk, checkTodoThunk, getAllTodoThunk} from "../../redux/todo/thunk-todo";
+import {
+  addTodoThunk,
+  checkAllTodoThunk,
+  checkTodoThunk,
+  deleteCheckedThunk, deleteTodoThunk,
+  getAllTodoThunk
+} from "../../redux/todo/thunk-todo";
 
 function TodoContainer() {
   const [viewOptions, setViewOptions] = useState("all")
 
 
   const dispatch = useDispatch()
-  const {todo} = useSelector((state) => state.todo)
+  const {todo, isLoading} = useSelector((state) => state.todo)
+
+
+  useEffect(()=>{dispatch(getAllTodoThunk())},[])
+
 
   const filteredTasks = useMemo(() => {
 	switch (viewOptions) {
@@ -37,37 +41,36 @@ function TodoContainer() {
   const addTodo = (userInput) => {
 	if (userInput) {
 	  const newItem = {
-		userId: Date.now(),
 		task: userInput,
 		complete: false
 	  }
-	  debugger
 	  dispatch(addTodoThunk(newItem))
 	  //dispatch(getAllTodoThunk())
 	}
   }
-  const checkAll = () => {
+  const checkAll = (todo) => {
 
-	dispatch(checkAllActon())
-
-  }
-
-
-  const deleteChecked = () => {
-	dispatch(deleteCheckedAction())
+	dispatch(checkAllTodoThunk(todo))
 
   }
-  const removeTask = (id) => {
-	dispatch(deleteTodoAction(id))
+
+
+  const deleteChecked = (todo) => {
+	dispatch(deleteCheckedThunk(todo))
 
   }
-  const checkTodo = (id) => {
-	dispatch(checkTodoThunk(id))
+  const removeTask = (todo) => {
+	dispatch(deleteTodoThunk(todo))
+
+  }
+  const checkTodo = (todo) => {
+	dispatch(checkTodoThunk(todo))
   }
 
   return (
 	<div className={style.App}>
-
+	  {isLoading  && <div className={style.loader}><img src={obama} alt="loader"/></div>
+	  }
 	  <br/>
 	  <h1>Your todos list</h1>
 	  <div className={style.container}>
@@ -77,7 +80,7 @@ function TodoContainer() {
 			return (
 			  <ToDo
 				todo={todo}
-				key={todo.id}
+				key={todo._id}
 				isCheck={todo.complete}
 				text={todo.task}
 				checkTodo={checkTodo}
@@ -95,7 +98,7 @@ function TodoContainer() {
 			  todo.length > 0 &&
 
 			  <ButtonGroup className={style.btnGroup} aria-label="Basic example">
-			  <span onClick={() => checkAll()}
+			  <span onClick={() => checkAll(todo)}
 					className={style.counterTodo}>{todo.filter(element => element.complete === false).length}tasks left</span>
 				<Button className={viewOptions === "all" ? style.borderBtn : style.btn} variant="secondary"
 						onClick={() => setViewOptions("all")}>All</Button>
@@ -108,7 +111,7 @@ function TodoContainer() {
 			}
 			{
 			  todo.some(element => element.complete === true) &&
-			  <div className={style.clearButton} onClick={() => deleteChecked()}>
+			  <div className={style.clearButton} onClick={() => deleteChecked(todo)}>
 				Clear completed
 			  </div>
 			}

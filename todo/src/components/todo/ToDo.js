@@ -10,7 +10,7 @@ function ToDo({todo, checkTodo, removeTask, isCheck}) {
 	<div>
 	  <div key={todo.userId} className={style.itemTodo}>
 
-		<div className={style.check_wrapper} onClick={() => checkTodo(todo.userId)}>
+		<div className={style.check_wrapper} onClick={() => checkTodo(todo) } defaultChecked={todo.complete}>
 		  {
 			isCheck && <FcCheckmark className={style.check_inner}/>
 
@@ -24,7 +24,7 @@ function ToDo({todo, checkTodo, removeTask, isCheck}) {
 		  {todo.task}
 		</div>
 
-		<FaTrashAlt className={style.deleteBtn} onClick={() => removeTask(todo.userId)}/>
+		<FaTrashAlt className={style.deleteBtn} onClick={() => removeTask(todo)}/>
 
 	  </div>
 	  <hr/>

@@ -13,9 +13,9 @@ export const checkTodoAction = (id) => ({
   payload: id
 })
 
-export const deleteTodoAction = (id) => ({
+export const deleteTodoAction = (todo) => ({
   type: "DELETE_TODO",
-  payload: id
+  payload: todo
 })
 
 
@@ -24,7 +24,17 @@ export const deleteCheckedAction = (todo) => ({
   payload: todo
 })
 
-export const checkAllActon = (todo) => ({
+export const checkAllActon = () => ({
   type: "CHECK_ALL",
-  payload: todo
+
 })
+
+export const startLoading = () => ({
+  type: "LOADER_START",
+
+})
+export const endLoading = () => ({
+  type: "LOADER_END",
+
+})
+

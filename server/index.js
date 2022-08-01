@@ -18,7 +18,7 @@ app.use('/api', authRouter);
 
 async function startApp() {
   try {
-	await mongoose.connect(process.env.DB_URL, {useUnifiedTopology: true, useNewUrlParser: true})
+	await mongoose.connect(process.env.DB_URL, {useUnifiedTopology: true, useNewUrlParser: true,useCreateIndex: true, useFindAndModify: false})
 	app.listen(PORT, () => console.log("SERVER STARTED ON PORT " + PORT));
   } catch (e) {
 	console.log(e)

@@ -1,33 +1,98 @@
 import {TodoService} from "../../services/todo-service";
-import {addTodoAction, checkAllActon, checkTodoAction, getAllTodoAction} from "./actions";
+import {
+  addTodoAction,
+  checkAllActon,
+  checkTodoAction,
+  deleteCheckedAction,
+  deleteTodoAction,
+  getAllTodoAction
+} from "./actions";
+import {endLoading, errorAction, startLoading} from "../share/actions";
 
 export const addTodoThunk =
   (todo) =>
 	async (dispatch) => {
+
 	  try {
+		dispatch(startLoading())
 		const data = await TodoService.addTodoService(todo);
 		dispatch(addTodoAction(data));
 	  } catch (e) {
-		console.error(e);
+		dispatch(errorAction(e))
+	  } finally {
+		dispatch(endLoading())
 	  }
 	};
 
 export const getAllTodoThunk = () => async (dispatch) => {
+
   try {
+	dispatch(startLoading())
 	const data = await TodoService.getAllTodoService();
 	dispatch(getAllTodoAction(data))
   } catch (e) {
-	console.error(e);
+	dispatch(errorAction(e))
+  } finally {
+	dispatch(endLoading())
   }
 };
 
 export const checkTodoThunk =
-  (id) =>
+  (todo) =>
 	async (dispatch) => {
 	  try {
-		const data = await TodoService.checkTodoService(id);
+		dispatch(startLoading())
+		const data = await TodoService.checkTodoService(todo)
 		dispatch(checkTodoAction(data))
 	  } catch (e) {
-		console.error(e);
+		dispatch(errorAction(e))
+	  } finally {
+		dispatch(endLoading())
+	  }
+	};
+
+
+export const checkAllTodoThunk =
+  () =>
+	async (dispatch) => {
+	  try {
+		dispatch(startLoading())
+		const data = await TodoService.checkAllTodoService()
+		dispatch(checkAllActon())
+	  } catch (e) {
+		dispatch(errorAction(e))
+	  } finally {
+		dispatch(endLoading())
+	  }
+	};
+
+export const deleteTodoThunk =
+  (todo) =>
+	async (dispatch) => {
+	  try {
+		dispatch(startLoading())
+		const data = await TodoService.deleteTodoService(todo._id)
+		console.log(data)
+		dispatch(deleteTodoAction(todo._id))
+	  } catch (e) {
+		dispatch(errorAction(e))
+	  } finally {
+		dispatch(endLoading())
+	  }
+	};
+
+
+export const deleteCheckedThunk =
+  (todo) =>
+	async (dispatch) => {
+	  try {
+		dispatch(startLoading())
+		const data = await TodoService.deleteCheckedService(todo)
+		console.log(data)
+		dispatch(deleteCheckedAction(data))
+	  } catch (e) {
+		dispatch(errorAction(e))
+	  } finally {
+		dispatch(endLoading())
 	  }
 	};

@@ -10,19 +10,19 @@ export function todoReducer(state = todoInitialState, action) {
 	  }
 
 
-
-		case "GET_ALL_TODO":return {
-			...state,
-			todo: [...state.todo, action.payload]
-		  }
-
+	case "GET_ALL_TODO":
+	  const newState = {...state}
+	  const todos = action.payload
+	  newState.todo = todos;
+	  return newState
 
 	case "CHECK_TODO":
+	  const {_id} = action.payload;
 	  return {
 		...state,
 		todo: state.todo.map(todo => {
-			if (todo.userId === action.payload) {
-			  return {...todo, complete: !todo.complete}
+			if (todo._id === _id) {
+			  return action.payload
 			}
 			return todo
 		  }
@@ -30,9 +30,10 @@ export function todoReducer(state = todoInitialState, action) {
 	  }
 
 	case "DELETE_TODO":
+	  console.log({"action.payload": action.payload, "state.todo": state.todo})
 	  return {
 		...state,
-		todo: [...state.todo.filter((todo) => todo.userId !== action.payload)]
+		todo: [...state.todo.filter((todo) => todo._id !== action.payload)]
 	  }
 
 	case "DELETE_CHECKED":
@@ -52,6 +53,19 @@ export function todoReducer(state = todoInitialState, action) {
 		  }
 		)
 	  }
+
+	case "LOADER_START":
+	  return {
+		...state,
+		isLoading: true
+	  }
+
+	case "LOADER_END":
+	  return {
+		...state,
+		isLoading: false
+	  }
+
 
 	default:
 	  return state

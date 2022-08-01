@@ -1,23 +1,28 @@
 .App {
     margin: 0 auto;
-    width:450px;
+    width: 450px;
 }
-h1{
+
+h1 {
     display: flex;
     justify-content: center;
-   margin-right: 20px;
+    margin-right: 20px;
 }
-.container{
-    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+
+.container {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
 }
-.containerForms{
+
+.containerForms {
     overflow-y: auto;
     max-height: 355px;
 }
+
 .containerForms::-webkit-scrollbar {
     display: none;
 }
-.filter{
+
+.filter {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
@@ -25,13 +30,15 @@ h1{
     height: 50px;
     gap: 20px;
 }
-.btnGroup{
+
+.btnGroup {
     align-items: center;
     height: 50px;
 
 }
-.btn{
-    background-color: rgba(28,28,28,0);
+
+.btn {
+    background-color: rgba(28, 28, 28, 0);
     border: none;
     cursor: pointer;
     margin-right: 15px;
@@ -39,16 +46,16 @@ h1{
 }
 
 
-.counterTodo{
+.counterTodo {
     cursor: pointer;
     opacity: 0.5;
-    font-size: 12px;
+    font-size: 13px;
     padding-left: 10px;
-    padding-right: 50px;
+    padding-right: 40px;
 }
 
-.clearButton{
-    font-size: 12px;
+.clearButton {
+    font-size: 13px;
     opacity: 0.5;
     cursor: pointer;
     margin-right: 5px;
@@ -56,12 +63,19 @@ h1{
     padding-right: 10px;
 
 }
-.borderBtn{
 
-    background-color: rgba(28,28,28,0);
+.borderBtn {
+
+    background-color: rgba(28, 28, 28, 0);
     cursor: pointer;
     border: 2px solid #b8b5b5;
     border-radius: 5px;
     margin-right: 15px;
     margin-top: 10px;
+}
+
+.loader {
+    position: absolute;
+    margin-left: -320px;
+    background-color: rgba(151, 137, 137, 0.34);
 }

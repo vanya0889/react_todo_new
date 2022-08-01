@@ -1,4 +1,5 @@
 const todoInitialState = {
-  todo: []
+  todo: [],
+
 }
 export default todoInitialState

@@ -14,9 +14,10 @@ router.post('/login', UserController.loginNewUser);
 router.get('/users', authMiddleware, UserController.getUsers);
 router.post('/posts',authMiddleware, PostController.createTodo);
 router.get('/getAll',authMiddleware, PostController.getAllTodos);
-router.patch('/check/',authMiddleware, PostController.checkTodo);
+router.patch('/check',authMiddleware, PostController.checkTodo);
 router.patch('/checkAll',authMiddleware, PostController.checkAllTodo);
-router.delete('/delete/',authMiddleware, PostController.deleteChecked);
+router.delete('/deleteOne',authMiddleware, PostController.deleteTodo);
+router.delete('/deleteChecked',authMiddleware, PostController.deleteChecked);
 
 
 module.exports = router;

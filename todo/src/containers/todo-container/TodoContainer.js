@@ -1,7 +1,7 @@
 import {useEffect, useMemo, useState} from "react";
 import obama from "../../assets/obama.gif"
 import {useDispatch, useSelector} from "react-redux";
-import style from "../../App.module.css";
+import style from "./TodoContainer.module.css";
 import ToDoForm from "../../components/todo-form/ToDoForm";
 import ToDo from "../../components/todo/ToDo";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
@@ -131,7 +131,7 @@ function TodoContainer() {
 
 
 	  </div>
-	 <div onClick={logOut}>logout</div>
+	 <div className={style.logOut} onClick={logOut}>logout</div>
 
 	</div>
   );

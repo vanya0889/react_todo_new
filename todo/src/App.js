@@ -3,7 +3,8 @@ import {Navigate, Route, Routes} from "react-router-dom";
 import Login from "./components/authorization/login/Login";
 import Registration from "./components/authorization/registration/Registration";
 import {useDispatch, useSelector} from "react-redux";
-import ErrorBoundary from "./ErrorBoundary";
+import ErrorBoundary from "./error/ErrorBoundary";
+
 
 
 

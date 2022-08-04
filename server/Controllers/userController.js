@@ -13,7 +13,7 @@ const generateAccessToken = (payload) => {
 
 class UserController {
 
-  async createNewUser(req, res, next) {
+  async createNewUser(req, res) {
 	try {
 	  const errors = validationResult(req)
 	  if (!errors.isEmpty()) {
@@ -35,7 +35,7 @@ class UserController {
   }
 
 
-  async loginNewUser(req, res, next) {
+  async loginNewUser(req, res) {
 	try {
 	  const {username, password} = req.body;
 	  const user = await User.findOne({username});
@@ -52,13 +52,9 @@ class UserController {
 	  res.status(400).json({e, message: 'Login error'})
 	}
   }
-  async logOut(req, res, next) {
-	res.cookie('jwt', '', {maxAge: 1})
-	res.redirect('/')
-  }
 
 
-  async getUsers(req, res, next) {
+  async getUsers(req, res) {
 	try {
 	  const users = await User.find()
 	  res.json(users);

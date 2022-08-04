@@ -9,10 +9,6 @@ export class TokenService {
   }
 
 
-  static saveToken(token) {
-    console.log(token)
-	localStorage.setItem("token", token);
-  }
 
   static deleteToken() {
     localStorage.removeItem("token")

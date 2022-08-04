@@ -14,7 +14,7 @@ class TodoController {
 	}
   }
 
-  async getAllTodos(req, res, next) {
+  async getAllTodos(req, res) {
 	try {
 	  let userId = req.user
 	  let allTasks = await Todo.find({userId})
@@ -25,7 +25,7 @@ class TodoController {
 	}
   }
 
-  async checkTodo(req, res, next) {
+  async checkTodo(req, res) {
 	try {
 	  const {_id, complete} = req.body
 	  let userId = req.user
@@ -36,7 +36,7 @@ class TodoController {
 	}
   }
 
-  async checkAllTodo(req, res, next) {
+  async checkAllTodo(req, res) {
 	try {
 	  let userId = req.user
 	  const result = await Todo.updateMany({userId ,complete: false},{ $set: {  complete: true}} )
@@ -47,7 +47,7 @@ class TodoController {
 	}
   }
 
-  async deleteTodo(req, res, next) {
+  async deleteTodo(req, res) {
 	try {
 	  const _id = req.query._id
 	  const result = await Todo.deleteOne({_id})
@@ -60,7 +60,7 @@ class TodoController {
   }
 
 
-  async deleteChecked(req, res, next) {
+  async deleteChecked(req, res) {
 	try {
 	  let userId = req.user
 	  const complete = true

@@ -11,7 +11,6 @@ router.post('/registration', [
   check('password', "Password must not be less than 4 symbols").isLength({min:4, max: 20})
 ], UserController.createNewUser);
 router.post('/login', UserController.loginNewUser);
-router.get('/logout', authMiddleware, UserController.logOut);
 router.get('/users', authMiddleware, UserController.getUsers);
 router.post('/posts',authMiddleware, PostController.createTodo);
 router.get('/getAll',authMiddleware, PostController.getAllTodos);

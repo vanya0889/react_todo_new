@@ -4,19 +4,14 @@ import Login from "./components/authorization/login/Login";
 import Registration from "./components/authorization/registration/Registration";
 import {useDispatch, useSelector} from "react-redux";
 import ErrorBoundary from "./ErrorBoundary";
-import {errorAction} from "./redux/share/actions";
+
 
 
 function App() {
-  const dispatch = useDispatch()
-
 
   const {isLogin} = useSelector((state) => state.auth)
-  const {hasError} = useSelector((state) => state.share)
 
-  // const errorCatcher = (error) => {
-  // dispatch(errorAction(error))
-  // }
+
 
   return (
 	<div>

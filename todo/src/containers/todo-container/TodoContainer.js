@@ -13,8 +13,6 @@ import {
   deleteCheckedThunk, deleteTodoThunk,
   getAllTodoThunk
 } from "../../redux/todo/thunk-todo";
-import {Link, Navigate} from "react-router-dom";
-import {logOutAction} from "../../redux/auth/actions";
 import {logOutDis} from "../../redux/auth/thunk-auth";
 
 function TodoContainer() {
@@ -49,7 +47,6 @@ function TodoContainer() {
 		complete: false
 	  }
 	  dispatch(addTodoThunk(newItem))
-	  //dispatch(getAllTodoThunk())
 	}
   }
   const checkAll = (todo) => {
@@ -76,11 +73,6 @@ function TodoContainer() {
 	dispatch(logOutDis())
   }
 
-
-  // const logout = () => {
-	// localStorage.clear()
-	// window.location = window.location
-  // }
 
 
 

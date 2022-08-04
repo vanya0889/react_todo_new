@@ -11,8 +11,4 @@ export class UserService {
 	return data;
   }
 
-  static async loginOutService(values) {
-	const {data} = await api.get("/logout/", values);
-	return data;
-  }
 }

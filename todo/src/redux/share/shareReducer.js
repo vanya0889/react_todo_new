@@ -7,7 +7,7 @@ export function shareReducer(state = shareInitialState, action) {
 	case "LOADER_START":
 	  return {
 		...state,
-		isLoading: true
+		isLoading: !action.payload
 	  }
 
 	case "LOADER_END":
@@ -19,7 +19,7 @@ export function shareReducer(state = shareInitialState, action) {
 	case "ERROR":
 	  return {
 		...state,
-		error: action.payload
+		hasError: true
 	  }
 
 	default:

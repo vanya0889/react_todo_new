@@ -52,6 +52,10 @@ class UserController {
 	  res.status(400).json({e, message: 'Login error'})
 	}
   }
+  async logOut(req, res, next) {
+	res.cookie('jwt', '', {maxAge: 1})
+	res.redirect('/')
+  }
 
 
   async getUsers(req, res, next) {

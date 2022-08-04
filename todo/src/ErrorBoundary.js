@@ -1,32 +1,23 @@
-import React from "react"
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect, useState} from "react";
+import ErrorFallback from "./ErrorFallback";
 
 
 
-class ErrorBoundary extends React.Component {
-  constructor(props) {
-	super(props);
-	this.state = { hasError: false };
-  }
 
-  static getDerivedStateFromError(error) {
-	// Обновить состояние с тем, чтобы следующий рендер показал запасной UI.
-	return { hasError: true };
-  }
+const ErrorBoundary = (props) => {
+  const { children } = props;
+  const [errorState, setErrorState] = useState(false);
+  const { hasError } = useSelector((state) => state.share);
 
-  // componentDidCatch(error, errorInfo) {
-	// // Можно также сохранить информацию об ошибке в соответствующую службу журнала ошибок
-	// logErrorToMyService(error, errorInfo);
-  // }
 
-  render() {
-	if (this.state.hasError) {
-	  // Можно отрендерить запасной UI произвольного вида
-	  return <h1>Что-то пошло не так.</h1>;
+
+  useEffect(() => {
+	if (hasError) {
+	  setErrorState(true);
 	}
+  }, [hasError]);
 
-	return this.props.children;
-  }
-}
-
-
-export default ErrorBoundary
+  return errorState ? <ErrorFallback error={hasError} /> : children;
+};
+export default ErrorBoundary;

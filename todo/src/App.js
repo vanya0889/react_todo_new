@@ -11,26 +11,32 @@ function App() {
   const dispatch = useDispatch()
 
 
-
   const {isLogin} = useSelector((state) => state.auth)
-  const errorCatcher = (error) => {
-	dispatch(errorAction(error))
-  }
+  const {hasError} = useSelector((state) => state.share)
+
+  // const errorCatcher = (error) => {
+  // dispatch(errorAction(error))
+  // }
 
   return (
-	<ErrorBoundary errorCatcher={errorCatcher}>
-	  <Routes>
-		<Route path={"/"} element={<Navigate to={"/login"} replace/>}/>
-		<Route path="/todos" element={
-		  <TodoContainer/>}/>
-		<Route
-		  path="/login"
-		  element={isLogin ? <Navigate to="/todos"/> : <Login/>}
-		/>
-		<Route path="/registration" element={<Registration/>}/>
-	  </Routes>
-	</ErrorBoundary>
+	<div>
+	  <ErrorBoundary>
+		<Routes>
+		  <Route path={"/"} element={<Navigate to={"/login"} replace/>}/>
+		  <Route path={"/todos"} element={
+			isLogin ? <TodoContainer/> : <Navigate to="/login"/> }/>
+		  <Route
+			path="/login"
+			element={isLogin ? <Navigate to="/todos"/> : <Login/>}
+		  />
+		  <Route path="/registration" element={<Registration/>}/>
+		</Routes>
+	  </ErrorBoundary>
+
+	</div>
+
   )
+
 }
 
 export default App;

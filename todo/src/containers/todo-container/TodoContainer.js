@@ -13,6 +13,9 @@ import {
   deleteCheckedThunk, deleteTodoThunk,
   getAllTodoThunk
 } from "../../redux/todo/thunk-todo";
+import {Link, Navigate} from "react-router-dom";
+import {logOutAction} from "../../redux/auth/actions";
+import {logOutDis} from "../../redux/auth/thunk-auth";
 
 function TodoContainer() {
   const [viewOptions, setViewOptions] = useState("all")
@@ -37,6 +40,7 @@ function TodoContainer() {
 		return
 	}
   }, [viewOptions, todo])
+
 
   const addTodo = (userInput) => {
 	if (userInput) {
@@ -67,12 +71,25 @@ function TodoContainer() {
 	dispatch(checkTodoThunk(todo))
   }
 
+
+  const logOut = () => {
+	dispatch(logOutDis())
+  }
+
+
+  // const logout = () => {
+	// localStorage.clear()
+	// window.location = window.location
+  // }
+
+
+
   return (
 	<div className={style.App}>
-	  {isLoading  && <div className={style.loader}><img src={obama} alt="loader"/></div>
-	  }
+	  {isLoading  && <div className={style.loader}><img src={obama} alt="loader"/></div>}
 	  <br/>
 	  <h1>Your todos list</h1>
+
 	  <div className={style.container}>
 		<ToDoForm addTask={addTodo}/>
 		<div className={style.containerForms}>
@@ -122,6 +139,8 @@ function TodoContainer() {
 
 
 	  </div>
+	 <div onClick={logOut}>logout</div>
+
 	</div>
   );
 }

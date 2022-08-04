@@ -1,5 +1,5 @@
 const shareInitialState = {
   isLoading: false,
-  error: null
+  hasError: false
 }
 export default shareInitialState

@@ -1,4 +1,4 @@
-import { isLoginAction} from "./actions";
+import {isLoginAction, logOutAction} from "./actions";
 import {endLoading, errorAction, startLoading} from "../share/actions";
 
 import {UserService} from "../../services/user-service";
@@ -30,6 +30,22 @@ export const loginDis = (username, password) => {
 	  const data = await UserService.loginUserService({username, password});
 	  localStorage.setItem("token", data);
 	  dispatch(isLoginAction(username))
+
+	} catch (e) {
+	  dispatch(errorAction(e))
+	} finally {
+	  dispatch(endLoading())
+	}
+  }
+}
+
+
+export const logOutDis = () => {
+  return async (dispatch) => {
+	dispatch(startLoading())
+	try {
+	  localStorage.removeItem("token");
+	  dispatch(logOutAction())
 
 	} catch (e) {
 	  dispatch(errorAction(e))

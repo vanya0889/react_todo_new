@@ -39,7 +39,7 @@ input {
 }
 .loginButton:hover{
 
-	background: radial-gradient(circle, rgba(252,252,252,1) 1%, rgba(198,254,255,0.442225392296719) 100%);
+	background: radial-gradient(circle, rgba(252,252,252,1) 1%, rgba(255, 154, 154, 0.44) 100%);
 	color: black;
 	box-shadow: 2px 2px 7px 4px #bbbbbb;
 }

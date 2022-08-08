@@ -23,7 +23,9 @@ function TodoContainer() {
   const {todo, isLoading} = useSelector((state) => state.todo)
 
 
-  useEffect(()=>{dispatch(getAllTodoThunk())},[])
+  useEffect(() => {
+	dispatch(getAllTodoThunk())
+  }, [])
 
 
   const filteredTasks = useMemo(() => {
@@ -74,11 +76,10 @@ function TodoContainer() {
   }
 
 
-
-
   return (
 	<div className={style.App}>
-	  {isLoading  && <div className={style.loader}><img src={obama} alt="loader"/></div>}
+	  <div className={style.logOut} onClick={logOut}>logout</div>
+	  {isLoading && <div className={style.loader}><img src={obama} alt="loader"/></div>}
 	  <br/>
 	  <h1>Your todos list</h1>
 
@@ -131,7 +132,7 @@ function TodoContainer() {
 
 
 	  </div>
-	 <div className={style.logOut} onClick={logOut}>logout</div>
+
 
 	</div>
   );

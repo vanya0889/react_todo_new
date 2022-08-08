@@ -19,7 +19,7 @@ export function shareReducer(state = shareInitialState, action) {
 	case "ERROR":
 	  return {
 		...state,
-		hasError: true
+		error: action.payload
 	  }
 
 	default:

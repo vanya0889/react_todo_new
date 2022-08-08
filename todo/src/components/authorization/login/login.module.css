@@ -25,8 +25,9 @@ input {
 }
 
 .loginButton {
+	text-decoration: none;
 	background: transparent;
-	color: lightgray;
+	color: #131313;
 	transition: 0.2s;
 	margin: 7px;
 	font-size: 16px;
@@ -38,14 +39,33 @@ input {
 }
 .loginButton:hover{
 
-	background: radial-gradient(circle, rgba(252,252,252,1) 1%, rgba(198,254,255,0.442225392296719) 100%);
+	background: radial-gradient(circle, rgba(252,252,252,1) 1%, rgba(143, 230, 252, 0.44) 100%);
 	color: black;
 	box-shadow: 2px 2px 7px 4px #bbbbbb;
 }
 
 .link {
-	margin-left: 287px;
+	text-decoration: none;
+	background: transparent;
+	color: #131313;
+	transition: 0.2s;
+	margin: 7px;
+	font-size: 16px;
+	font-weight: bold;
+	padding: 5px 20px;
+	border: none;
+	box-shadow: 1px 1px 5px 2px #bbbbbb;
+	border-radius: 2px;
 }
+
+
+.link:hover{
+
+	background: radial-gradient(circle, rgba(252,252,252,1) 1%, rgba(252, 162, 168, 0.44) 100%);
+	color: black;
+	box-shadow: 2px 2px 7px 4px #bbbbbb;
+}
+
 
 .aboutLink {
 	position: fixed;

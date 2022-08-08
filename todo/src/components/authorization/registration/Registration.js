@@ -1,4 +1,4 @@
-import style from "../login/login.module.css"
+import style from "../registration/registration.module.css"
 import {useDispatch} from "react-redux";
 import {RegistrationDis} from "../../../redux/auth/thunk-auth";
 

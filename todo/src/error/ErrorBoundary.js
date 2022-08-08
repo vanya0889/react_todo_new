@@ -7,17 +7,8 @@ import ErrorFallback from "./ErrorFallback";
 
 const ErrorBoundary = (props) => {
   const { children } = props;
-  const [errorState, setErrorState] = useState(false);
-  const { hasError } = useSelector((state) => state.share);
+  const { error } = useSelector((state) => state.share);
 
-
-
-  useEffect(() => {
-	if (hasError) {
-	  setErrorState(true);
-	}
-  }, [hasError]);
-
-  return errorState ? <ErrorFallback error={hasError} /> : children;
+  return error ? <ErrorFallback error={error} /> : children;
 };
 export default ErrorBoundary;

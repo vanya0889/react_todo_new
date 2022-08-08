@@ -18,6 +18,10 @@ export const addTodoThunk =
 		const data = await TodoService.addTodoService(todo);
 		dispatch(addTodoAction(data));
 	  } catch (e) {
+		if(e?.response?.data) {
+		  dispatch(errorAction(e.response.data))
+		  return
+		}
 		dispatch(errorAction(e))
 	  } finally {
 		dispatch(endLoading())
@@ -31,6 +35,10 @@ export const getAllTodoThunk = () => async (dispatch) => {
 	const data = await TodoService.getAllTodoService();
 	dispatch(getAllTodoAction(data))
   } catch (e) {
+	if(e?.response?.data) {
+	  dispatch(errorAction(e.response.data))
+	  return
+	}
 	dispatch(errorAction(e))
   } finally {
 	dispatch(endLoading())
@@ -45,6 +53,10 @@ export const checkTodoThunk =
 		const data = await TodoService.checkTodoService(todo)
 		dispatch(checkTodoAction(data))
 	  } catch (e) {
+		if(e?.response?.data) {
+		  dispatch(errorAction(e.response.data))
+		  return
+		}
 		dispatch(errorAction(e))
 	  } finally {
 		dispatch(endLoading())
@@ -60,6 +72,10 @@ export const checkAllTodoThunk =
 		const data = await TodoService.checkAllTodoService()
 		dispatch(checkAllActon())
 	  } catch (e) {
+		if(e?.response?.data) {
+		  dispatch(errorAction(e.response.data))
+		  return
+		}
 		dispatch(errorAction(e))
 	  } finally {
 		dispatch(endLoading())
@@ -72,9 +88,12 @@ export const deleteTodoThunk =
 	  try {
 		dispatch(startLoading())
 		const data = await TodoService.deleteTodoService(todo._id)
-		console.log(data)
 		dispatch(deleteTodoAction(todo._id))
 	  } catch (e) {
+		if(e?.response?.data) {
+		  dispatch(errorAction(e.response.data))
+		  return
+		}
 		dispatch(errorAction(e))
 	  } finally {
 		dispatch(endLoading())
@@ -88,9 +107,12 @@ export const deleteCheckedThunk =
 	  try {
 		dispatch(startLoading())
 		const data = await TodoService.deleteCheckedService(todo)
-		console.log(data)
 		dispatch(deleteCheckedAction(data))
 	  } catch (e) {
+		if(e?.response?.data) {
+		  dispatch(errorAction(e.response.data))
+		  return
+		}
 		dispatch(errorAction(e))
 	  } finally {
 		dispatch(endLoading())

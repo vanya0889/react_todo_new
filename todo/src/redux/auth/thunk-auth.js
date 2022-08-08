@@ -14,6 +14,10 @@ export const RegistrationDis = (username, password) => {
 	  const response = await UserService.registrationUserService({username, password})
 	  alert(response.data.message)
 	} catch (e) {
+	  if(e?.response?.data) {
+		dispatch(errorAction(e.response.data))
+		return
+	  }
 	  dispatch(errorAction(e))
 	} finally {
 	  dispatch(endLoading())
@@ -32,6 +36,10 @@ export const loginDis = (username, password) => {
 	  dispatch(isLoginAction(username))
 
 	} catch (e) {
+	  if(e?.response?.data) {
+		dispatch(errorAction(e.response.data))
+		return
+	  }
 	  dispatch(errorAction(e))
 	} finally {
 	  dispatch(endLoading())

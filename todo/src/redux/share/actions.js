@@ -7,9 +7,9 @@ export const endLoading = () => ({
   type: "LOADER_END",
 
 })
-export const errorAction = () => ({
+export const errorAction = (payload) => ({
   type: "ERROR",
-
+  payload,
 })
 
 
